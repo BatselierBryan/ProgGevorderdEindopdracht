@@ -1,0 +1,12 @@
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\bin\Debug\net5.0\AdresbeheerEindopdrachtBatselier.deps.json
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\bin\Debug\net5.0\AdresbeheerEindopdrachtBatselier.dll
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\bin\Debug\net5.0\ref\AdresbeheerEindopdrachtBatselier.dll
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\bin\Debug\net5.0\AdresbeheerEindopdrachtBatselier.pdb
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\AdresbeheerEindopdrachtBatselier.csprojAssemblyReference.cache
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\AdresbeheerEindopdrachtBatselier.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\AdresbeheerEindopdrachtBatselier.AssemblyInfoInputs.cache
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\AdresbeheerEindopdrachtBatselier.AssemblyInfo.cs
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\AdresbeheerEindopdrachtBatselier.csproj.CoreCompileInputs.cache
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\AdresbeheerEindopdrachtBatselier.dll
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\ref\AdresbeheerEindopdrachtBatselier.dll
+C:\Users\Bryan\Desktop\HOGent\EersteJaar\Tweede Semester\ProgGev\AdresbeheerEindopdrachtBatselier\AdresbeheerEindopdrachtBatselier\obj\Debug\net5.0\AdresbeheerEindopdrachtBatselier.pdb
