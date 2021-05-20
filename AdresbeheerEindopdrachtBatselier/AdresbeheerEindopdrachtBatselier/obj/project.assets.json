@@ -1208,11 +1208,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj",
+      "projectUniqueName": "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj",
       "projectName": "AdresbeheerEindopdrachtBatselier",
-      "projectPath": "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj",
+      "projectPath": "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj",
       "packagesPath": "C:\\Users\\Bryan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\obj\\",
+      "outputPath": "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Bryan\\AppData\\Roaming\\NuGet\\NuGet.Config",

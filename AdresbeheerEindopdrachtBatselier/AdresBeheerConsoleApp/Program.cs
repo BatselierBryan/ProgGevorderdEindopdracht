@@ -18,7 +18,7 @@ namespace AdresBeheerConsoleApp
             Console.WriteLine(DateTime.Now);
 
             Console.WriteLine("Lengte gemeente: " + geg.Gemeentes.Count());
-            data.BulkGemeente(geg.Gemeentes);
+            //data.BulkGemeente(geg.Gemeentes); -> reeds uitgevoerd
 
             Console.WriteLine("Lengte straten: " + geg.Straten.Count());
             data.BulkStraat(geg.Straten);

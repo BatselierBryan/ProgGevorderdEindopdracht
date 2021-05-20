@@ -1226,11 +1226,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresBeheerConsoleApp\\AdresBeheerConsoleApp.csproj",
+      "projectUniqueName": "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresBeheerConsoleApp\\AdresBeheerConsoleApp.csproj",
       "projectName": "AdresBeheerConsoleApp",
-      "projectPath": "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresBeheerConsoleApp\\AdresBeheerConsoleApp.csproj",
+      "projectPath": "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresBeheerConsoleApp\\AdresBeheerConsoleApp.csproj",
       "packagesPath": "C:\\Users\\Bryan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresBeheerConsoleApp\\obj\\",
+      "outputPath": "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresBeheerConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Bryan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1247,8 +1247,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj": {
-              "projectPath": "C:\\Users\\Bryan\\Desktop\\HOGent\\EersteJaar\\Tweede Semester\\ProgGev\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj"
+            "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj": {
+              "projectPath": "C:\\ProgGevorderdEindopdracht\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier\\AdresbeheerEindopdrachtBatselier.csproj"
             }
           }
         }

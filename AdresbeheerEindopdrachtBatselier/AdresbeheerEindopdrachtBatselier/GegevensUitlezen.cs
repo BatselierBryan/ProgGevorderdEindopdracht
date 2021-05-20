@@ -19,36 +19,43 @@ namespace AdresbeheerEindopdrachtBatselier
 
         public void File()
         {
-            using (
-                StreamReader str = new StreamReader(pad))
+            using (StreamReader str = new StreamReader(pad))               
             {
+                int dcount = 0;
+                int subcount = 0;
                 string conf = "";
                 while ((conf = str.ReadLine()) != null)
                 {
                     if (conf.Contains("agiv:CrabAdr"))
                     {
+                        dcount++;
+                        subcount++;
                         string[] fileData = new string[16];
-
-                        for (int i = 0; i < 16; i++)
+                        
+                        while ((conf = str.ReadLine()) != null)
                         {
-                            conf = str.ReadLine();
-
-                            if (conf.Contains("agiv:ID")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); adreslocatieid++; }
-                            if (conf.Contains("agiv:STRAATNMID")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:STRAATNM")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:HUISNR")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:APPTNR")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:BUSNR")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:HNRLABEL")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:NISCODE")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:GEMEENTE")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("agiv:POSTCODE")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("gml:X")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("gml:Y")) { fileData[i] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("/agiv:CrabAdr")) { adreslocatieid++; break; }
+                            if (conf.Contains("agiv:ID")) { fileData[0] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:STRAATNMID")) { fileData[1] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:STRAATNM")) { fileData[2] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:HUISNR")) { fileData[3] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:APPTNR")) { fileData[4] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:BUSNR")) { fileData[5] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:HNRLABEL")) { fileData[6] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:NISCODE")) { fileData[7] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:GEMEENTE")) { fileData[8] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("agiv:POSTCODE")) { fileData[9] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("gml:X")) { fileData[14] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("gml:Y")) { fileData[15] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }                            
+                        }
+                        if (subcount >= 10000)
+                        {
+                            subcount = 0;
+                            Console.WriteLine($"Count is {dcount}");
                         }
 
 
-                        //Waar staat welke item in de filedata?
+                        //Waar staat welke item in de filedata? -> volgorde veranderen van filedata
                         //0 -> ID (int), 1 -> STRAATNMID (int), 2 -> STRAATNM (string), 3 -> HUISNR (string), 4 -> APPTNR (string), 5 -> BUSNR (string)
                         //6 -> HNRLABEL (string), 7->NISCODE(int), 8->GEMEENTE(string), 9->POSTCODE(int), 10 - 13->NULL, 14->X(decimal), 15->Y(decimal)
 
@@ -59,7 +66,10 @@ namespace AdresbeheerEindopdrachtBatselier
                                 fileData[i] = "";
                             }
                         }
-
+                        if (fileData[7] == "Druivenstraat")
+                        {
+                            Console.WriteLine(fileData[7] + " Dit klopt niet");
+                        }
                         int tmpId;
                         bool tmpIdSucces = int.TryParse(fileData[0], out tmpId);
                         int tmpStraatId;

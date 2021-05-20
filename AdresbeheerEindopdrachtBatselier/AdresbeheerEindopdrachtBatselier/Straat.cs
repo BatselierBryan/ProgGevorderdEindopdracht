@@ -4,9 +4,9 @@ namespace AdresbeheerEindopdrachtBatselier
 {
     public class Straat
     {
-        public int ID { get; set; }
-        public string Naam { get; set; }
+        public int ID { get; set; }        
         public int NISCode { get; set; }
+        public string Naam { get; set; }
 
         public Straat(int id, int niscode, string naam)
         {
