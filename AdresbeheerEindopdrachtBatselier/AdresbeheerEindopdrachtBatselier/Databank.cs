@@ -46,31 +46,17 @@ namespace AdresbeheerEindopdrachtBatselier
                 using (SqlBulkCopy sqbc = new SqlBulkCopy(Connection))
                 {
                     DataTable straat = new DataTable("straat");
-                    straat.Columns.Add(new DataColumn("id", Type.GetType("System.Int32")));
-                    straat.Columns.Add(new DataColumn("NISCODE", Type.GetType("System.Int32")));
+                    straat.Columns.Add(new DataColumn("id", Type.GetType("System.Int32")));          
                     straat.Columns.Add(new DataColumn("straatnaam", Type.GetType("System.String")));
+                    straat.Columns.Add(new DataColumn("NISCODE", Type.GetType("System.Int32")));
 
                     foreach (Straat s in straten)
                     {
-                        if (s.Naam == "Duivenstraat" || s.Naam == "Rechtstraat" || s.Naam == "Holle Eikstraat" || s.Naam == "Manebruggestraat" || s.Naam == "Lange Van Bloerstraat" || s.Naam == "Heidewegel" || s.Naam == "Asbroeklaan")
-                        {
-                            Console.WriteLine($"Slechte straat? --> {s.ID} {s.NISCode} {s.Naam}");
-                        } else
-                        {
-                            straat.Rows.Add(s.ID, s.NISCode, s.Naam);
-                        }
-                                             
+                            straat.Rows.Add(s.ID, s.Naam, s.NISCode);                                            
                     }
 
                     sqbc.DestinationTableName = "straat";
-                    try
-                    {
-                        sqbc.WriteToServer(straat);
-                    } catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-
+                    sqbc.WriteToServer(straat);
                 }
             }
         }
