@@ -24,10 +24,10 @@ namespace AdresBeheerConsoleApp
             data.BulkStraat(geg.Straten);
 
             Console.WriteLine("Lengte adreslocatie: " + geg.AdresLocaties.Count());
-            data.BulkAdresLocatie(geg.AdresLocaties);
+            //data.BulkAdresLocatie(geg.AdresLocaties); -> reeds uitgevoerd
 
             Console.WriteLine("Lengte adressen: " + geg.Adressen.Count());
-            data.BulkAdres(geg.Adressen);
+            //data.BulkAdres(geg.Adressen); -> Not fixed yet
 
             Console.WriteLine(DateTime.Now);
             Console.WriteLine("End bulk");

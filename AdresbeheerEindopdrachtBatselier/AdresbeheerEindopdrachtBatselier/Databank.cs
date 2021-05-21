@@ -20,7 +20,7 @@ namespace AdresbeheerEindopdrachtBatselier
             {
                 con.Open();
                 using (SqlBulkCopy sqbc = new SqlBulkCopy(Connection))
-                {     
+                {
                     DataTable gemeente = new DataTable("gemeente");
                     gemeente.Columns.Add(new DataColumn("NISCODE", Type.GetType("System.String")));
                     gemeente.Columns.Add(new DataColumn("gemeentenaam", Type.GetType("System.String")));
@@ -33,7 +33,7 @@ namespace AdresbeheerEindopdrachtBatselier
                     sqbc.DestinationTableName = "gemeente";
                     sqbc.ColumnMappings.Add("NISCODE", "NISCODE");
                     sqbc.ColumnMappings.Add("gemeentenaam", "gemeentenaam");
-                    sqbc.WriteToServer(gemeente);               
+                    sqbc.WriteToServer(gemeente);
                 }
             }
         }
@@ -47,16 +47,30 @@ namespace AdresbeheerEindopdrachtBatselier
                 {
                     DataTable straat = new DataTable("straat");
                     straat.Columns.Add(new DataColumn("id", Type.GetType("System.Int32")));
-                    straat.Columns.Add(new DataColumn("NISCode", Type.GetType("System.Int32")));
+                    straat.Columns.Add(new DataColumn("NISCODE", Type.GetType("System.Int32")));
                     straat.Columns.Add(new DataColumn("straatnaam", Type.GetType("System.String")));
 
                     foreach (Straat s in straten)
                     {
-                        straat.Rows.Add(s.ID, s.NISCode, s.Naam);
+                        if (s.Naam == "Duivenstraat" || s.Naam == "Rechtstraat" || s.Naam == "Holle Eikstraat" || s.Naam == "Manebruggestraat" || s.Naam == "Lange Van Bloerstraat" || s.Naam == "Heidewegel" || s.Naam == "Asbroeklaan")
+                        {
+                            Console.WriteLine($"Slechte straat? --> {s.ID} {s.NISCode} {s.Naam}");
+                        } else
+                        {
+                            straat.Rows.Add(s.ID, s.NISCode, s.Naam);
+                        }
+                                             
                     }
 
                     sqbc.DestinationTableName = "straat";
-                    sqbc.WriteToServer(straat);
+                    try
+                    {
+                        sqbc.WriteToServer(straat);
+                    } catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                 }
             }
         }

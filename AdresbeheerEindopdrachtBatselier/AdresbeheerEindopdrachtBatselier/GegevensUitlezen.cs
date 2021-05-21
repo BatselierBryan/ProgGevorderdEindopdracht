@@ -30,7 +30,7 @@ namespace AdresbeheerEindopdrachtBatselier
                     {
                         dcount++;
                         subcount++;
-                        string[] fileData = new string[16];
+                        string[] fileData = new string[12];
                         
                         while ((conf = str.ReadLine()) != null)
                         {
@@ -45,10 +45,10 @@ namespace AdresbeheerEindopdrachtBatselier
                             if (conf.Contains("agiv:NISCODE")) { fileData[7] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
                             if (conf.Contains("agiv:GEMEENTE")) { fileData[8] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
                             if (conf.Contains("agiv:POSTCODE")) { fileData[9] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("gml:X")) { fileData[14] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
-                            if (conf.Contains("gml:Y")) { fileData[15] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }                            
+                            if (conf.Contains("gml:X")) { fileData[10] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }
+                            if (conf.Contains("gml:Y")) { fileData[11] = Regex.Match(conf, "(?<=>)(.*)(?=<)").ToString(); }                            
                         }
-                        if (subcount >= 10000)
+                        if (subcount >= 500000)
                         {
                             subcount = 0;
                             Console.WriteLine($"Count is {dcount}");
@@ -57,7 +57,7 @@ namespace AdresbeheerEindopdrachtBatselier
 
                         //Waar staat welke item in de filedata? -> volgorde veranderen van filedata
                         //0 -> ID (int), 1 -> STRAATNMID (int), 2 -> STRAATNM (string), 3 -> HUISNR (string), 4 -> APPTNR (string), 5 -> BUSNR (string)
-                        //6 -> HNRLABEL (string), 7->NISCODE(int), 8->GEMEENTE(string), 9->POSTCODE(int), 10 - 13->NULL, 14->X(decimal), 15->Y(decimal)
+                        //6 -> HNRLABEL (string), 7->NISCODE(int), 8->GEMEENTE(string), 9->POSTCODE(int), 10->X(decimal), 11->Y(decimal)
 
                         for (int i = 0; i < fileData.Length; i++)
                         {
@@ -66,10 +66,7 @@ namespace AdresbeheerEindopdrachtBatselier
                                 fileData[i] = "";
                             }
                         }
-                        if (fileData[7] == "Druivenstraat")
-                        {
-                            Console.WriteLine(fileData[7] + " Dit klopt niet");
-                        }
+
                         int tmpId;
                         bool tmpIdSucces = int.TryParse(fileData[0], out tmpId);
                         int tmpStraatId;
@@ -79,9 +76,14 @@ namespace AdresbeheerEindopdrachtBatselier
                         int tmpNiscode;
                         bool tmpNiscodeSucces = int.TryParse(fileData[7], out tmpNiscode);
                         decimal tmpX;
-                        bool tmpXSucces = decimal.TryParse(fileData[14], out tmpX);
+                        bool tmpXSucces = decimal.TryParse(fileData[10], out tmpX);
                         decimal tmpY;
-                        bool tmpYSucces = decimal.TryParse(fileData[15], out tmpY);
+                        bool tmpYSucces = decimal.TryParse(fileData[11], out tmpY);
+
+                        if (tmpNiscodeSucces == false)
+                        {
+                            Console.WriteLine("Dit klopt niet, de waarde van filedata[7] is geen geldig getal maar " + fileData[7]);
+                        }
 
                         Adres tmpAdres = new(tmpId, tmpStraatId, adreslocatieid, tmpPostcode, fileData[3], fileData[5], fileData[4], fileData[6], fileData[2]);
                         Adressen.Add(tmpAdres);
