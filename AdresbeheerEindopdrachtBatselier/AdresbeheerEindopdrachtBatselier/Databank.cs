@@ -93,17 +93,17 @@ namespace AdresbeheerEindopdrachtBatselier
                 {
                     DataTable adres = new DataTable("adres");
                     adres.Columns.Add(new DataColumn("id", Type.GetType("System.Int32")));
-                    adres.Columns.Add(new DataColumn("straatID", Type.GetType("System.Int32")));
-                    adres.Columns.Add(new DataColumn("adreslocatieId", Type.GetType("System.Int32")));
-                    adres.Columns.Add(new DataColumn("postcode", Type.GetType("System.Int32")));
+                    adres.Columns.Add(new DataColumn("straatID", Type.GetType("System.Int32")));                    
                     adres.Columns.Add(new DataColumn("huisnummer", Type.GetType("System.String")));
                     adres.Columns.Add(new DataColumn("appartementnummer", Type.GetType("System.String")));
                     adres.Columns.Add(new DataColumn("busnummer", Type.GetType("System.String")));
                     adres.Columns.Add(new DataColumn("huisnummerlabel", Type.GetType("System.String")));
+                    adres.Columns.Add(new DataColumn("adreslocatieId", Type.GetType("System.Int32")));
+                    adres.Columns.Add(new DataColumn("postcode", Type.GetType("System.Int32")));
 
                     foreach (Adres ad in adressen)
                     {
-                        adres.Rows.Add(ad.ID, ad.StraatID, ad.AdresLocatieID, ad.Postcode, ad.HuisNummer, ad.AppNummer, ad.BusNummer, ad.HuisNummerLabel);
+                        adres.Rows.Add(ad.ID, ad.StraatID, ad.HuisNummer, ad.AppNummer, ad.BusNummer, ad.HuisNummerLabel, ad.AdresLocatieID, ad.Postcode);
                     }
 
                     sqbc.DestinationTableName = "adres";

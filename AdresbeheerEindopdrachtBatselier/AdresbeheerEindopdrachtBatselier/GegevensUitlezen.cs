@@ -59,13 +59,13 @@ namespace AdresbeheerEindopdrachtBatselier
                         //0 -> ID (int), 1 -> STRAATNMID (int), 2 -> STRAATNM (string), 3 -> HUISNR (string), 4 -> APPTNR (string), 5 -> BUSNR (string)
                         //6 -> HNRLABEL (string), 7->NISCODE(int), 8->GEMEENTE(string), 9->POSTCODE(int), 10->X(decimal), 11->Y(decimal)
 
-                        for (int i = 0; i < fileData.Length; i++)
-                        {
-                            if (fileData[i] == null)
-                            {
-                                fileData[i] = "";
-                            }
-                        }
+                        //for (int i = 0; i < fileData.Length; i++)
+                        //{
+                        //    if (fileData[i] == null)
+                        //    {
+                        //        fileData[i] = "";
+                        //    }
+                        //}
 
                         int tmpId;
                         bool tmpIdSucces = int.TryParse(fileData[0], out tmpId);

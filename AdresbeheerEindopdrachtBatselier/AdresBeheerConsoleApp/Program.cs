@@ -18,16 +18,16 @@ namespace AdresBeheerConsoleApp
             Console.WriteLine(DateTime.Now);
 
             Console.WriteLine("Lengte gemeente: " + geg.Gemeentes.Count());
-            //data.BulkGemeente(geg.Gemeentes); -> reeds uitgevoerd
+            data.BulkGemeente(geg.Gemeentes);
 
             Console.WriteLine("Lengte straten: " + geg.Straten.Count());
             data.BulkStraat(geg.Straten);
 
             Console.WriteLine("Lengte adreslocatie: " + geg.AdresLocaties.Count());
-            //data.BulkAdresLocatie(geg.AdresLocaties); -> reeds uitgevoerd
+            data.BulkAdresLocatie(geg.AdresLocaties);
 
             Console.WriteLine("Lengte adressen: " + geg.Adressen.Count());
-            //data.BulkAdres(geg.Adressen); -> Not fixed yet
+            data.BulkAdres(geg.Adressen);
 
             Console.WriteLine(DateTime.Now);
             Console.WriteLine("End bulk");
