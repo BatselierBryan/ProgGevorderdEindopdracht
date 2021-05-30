@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseQueries", "Database
 		Straat.sql = Straat.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdresbeheerUnitTesting", "AdresbeheerUnitTesting\AdresbeheerUnitTesting.csproj", "{0FEDC50A-51CF-4605-B764-944D2AFE8099}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdresbeheerWPF", "AdresbeheerWPF\AdresbeheerWPF.csproj", "{8B7B88C7-5132-45D6-8BE2-E0A727CB456C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{FC8BE501-AF02-4A0D-927C-B1FF5FB3B4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC8BE501-AF02-4A0D-927C-B1FF5FB3B4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC8BE501-AF02-4A0D-927C-B1FF5FB3B4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FEDC50A-51CF-4605-B764-944D2AFE8099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FEDC50A-51CF-4605-B764-944D2AFE8099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FEDC50A-51CF-4605-B764-944D2AFE8099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FEDC50A-51CF-4605-B764-944D2AFE8099}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B7B88C7-5132-45D6-8BE2-E0A727CB456C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7B88C7-5132-45D6-8BE2-E0A727CB456C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7B88C7-5132-45D6-8BE2-E0A727CB456C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7B88C7-5132-45D6-8BE2-E0A727CB456C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
