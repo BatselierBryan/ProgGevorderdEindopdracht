@@ -70,7 +70,7 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Button Content="Update gemeente" x:Name="btnGemeenteUpdaten" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="Gemeente_Click"/>
+            <Button Content="Update gemeente" x:Name="btnGemeenteUpdaten" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20"/>
         </Border>
     </Grid>
 </Window>

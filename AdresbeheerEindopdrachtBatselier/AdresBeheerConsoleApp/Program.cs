@@ -51,7 +51,24 @@ namespace AdresBeheerConsoleApp
             {
                 Console.WriteLine($"{adres.StraatID.ToString()} {adres.HuisNummer.ToString()} {adres.Straat}");
             }
-            
+
+            Console.WriteLine();
+            gekregenAdressen = domainsql.SelecteerAdressenInStraat(29299);
+            foreach (var adres in gekregenAdressen)
+            {
+                Console.WriteLine($"{adres.StraatID.ToString()} {adres.HuisNummer.ToString()} {adres.Straat}");
+            }
+
+            Console.WriteLine();
+            var gekregenGemeente = domainsql.SelecteerGemeente(11001);
+            Console.WriteLine(gekregenGemeente.Naam + " " +  gekregenGemeente.NISCode);
+
+            Console.WriteLine();
+            var gekregenGemeenten = domainsql.SelecteerGemeenten();
+            foreach (var gemeente in gekregenGemeenten)
+            {
+                Console.WriteLine($"{gemeente.Naam} {gemeente.NISCode.ToString()}");
+            }
         }
     }
 }
