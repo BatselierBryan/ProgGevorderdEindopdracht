@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdresbeheerWPF"
         mc:Ignorable="d"
-        Title="Gemeente" Height="600" Width="900">
+        Title="Gemeente" Height="600" Width="900" Loaded="Gemeente_Loaded">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -25,8 +25,8 @@
         </Border>
         <Label Content="Niscode: " HorizontalAlignment="Left" Margin="51,143,0,0" VerticalAlignment="Top" FontFamily="Calisto MT" FontSize="20"/>
         <Label Content="Gemeentenaam: " HorizontalAlignment="Left" Margin="51,220,0,0" VerticalAlignment="Top" FontFamily="Calisto MT" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="229,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="25" FontFamily="Calisto MT" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Margin="229,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="25" FontFamily="Calisto MT" FontSize="20"/>
+        <TextBox x:Name="txtNiscode" HorizontalAlignment="Left" Margin="229,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="25" FontFamily="Calisto MT" FontSize="20"/>
+        <TextBox x:Name="txtGemeente" HorizontalAlignment="Left" Margin="229,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="25" FontFamily="Calisto MT" FontSize="20"/>
         <Border CornerRadius="8" BorderBrush="Black" BorderThickness="4,4,4,4" Margin="25,25,708,483" >
             <Border.Background>
                 <LinearGradientBrush EndPoint="0,0" StartPoint="1.75,1">
@@ -43,7 +43,7 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Button Content="Voeg gemeente toe" x:Name="btnGemeenteVoegToe" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20"/>
+            <Button Content="Voeg gemeente toe" x:Name="btnGemeenteVoegToe" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="btnGemeenteVoegToe_Click"/>
         </Border>
         <Border CornerRadius="8" BorderBrush="Black" BorderThickness="4,4,4,4" Margin="639,130,35,375" >
             <Border.Background>
@@ -52,7 +52,7 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Button Content="Check aanwijzigheid" x:Name="btnGemeenteCheckAanwezigheid" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20"/>
+            <Button Content="Check aanwijzigheid" x:Name="btnGemeenteCheckAanwezigheid" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="btnGemeenteCheckAanwezigheid_Click"/>
         </Border>
         <Border CornerRadius="8" BorderBrush="Black" BorderThickness="4,4,4,4" Margin="639,237,35,268" >
             <Border.Background>
@@ -61,7 +61,7 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Button Content="Verwijder gemeente" x:Name="btnGemeenteVerwijderen" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20"/>
+            <Button Content="Verwijder gemeente" x:Name="btnGemeenteVerwijderen" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="btnGemeenteVerwijderen_Click"/>
         </Border>
         <Border CornerRadius="8" BorderBrush="Black" BorderThickness="4,4,4,4" Margin="639,345,35,160" >
             <Border.Background>
@@ -70,7 +70,8 @@
                     <GradientStop Color="White" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Button Content="Update gemeente" x:Name="btnGemeenteUpdaten" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20"/>
+            <Button Content="Update gemeente" x:Name="btnGemeenteUpdaten" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="btnGemeenteUpdaten_Click"/>
         </Border>
+        <ComboBox x:Name="cboGemeentes" HorizontalAlignment="Left" Height="26" Margin="51,290,0,0" VerticalAlignment="Top" Width="384" IsReadOnly="True"/>
     </Grid>
 </Window>

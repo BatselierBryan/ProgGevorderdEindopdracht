@@ -61,7 +61,7 @@ namespace AdresbeheerWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AdresbeheerWPF;V1.0.0.0;component/straat.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AdresbeheerWPF;component/straat.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Straat.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
