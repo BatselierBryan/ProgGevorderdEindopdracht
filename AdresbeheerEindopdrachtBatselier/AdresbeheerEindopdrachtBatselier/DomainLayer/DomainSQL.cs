@@ -138,7 +138,43 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
 
         public List<Adres> SelecteerAdressenInGemeente(int NIScode)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT a.id, a.straatID, a.huisnummer, a.appartementnummer, a.busnummer, a.huisnummerlabel, a.adreslocatieID, a.postcode FROM gemeente as g INNER JOIN straat AS s ON g.NISCODE = s.NISCODE INNER JOIN adres AS a ON a.id = s.id WHERE g.NISCODE = @GegevenNIScode AND g.NISCODE = s.NISCODE AND s.id = a.id;");
+                command.Parameters.AddWithValue("@GegevenNIScode", NIScode);
+                command.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    var listAdressen = new List<Adres>();
+                    while (dataReader.Read())
+                    {            
+                        var tmpId = dataReader["id"].ToString();
+                        var tmpStraatId = dataReader["straatid"].ToString();
+                        var tmpHuisnummer = dataReader["huisnummer"].ToString();
+                        var tmpBusnummer = dataReader["busnummer"].ToString();
+                        var tmpAppNummer = dataReader["appartementnummer"].ToString();
+                        var tmpHuisnummerlabel = dataReader["huisnummerlabel"].ToString();
+                        var tmpPostcode = dataReader["postcode"].ToString();
+                        var tmpAdreslocatieid = dataReader["adreslocatieid"].ToString();
+                        var tmpStraatnaam = "Template"; //Deze moet nog gefixt worden naar -> SelecteerStraat(id)
+                        
+                        var GeselecteerdeAdres = new Adres(int.Parse(tmpId), int.Parse(tmpStraatId), int.Parse(tmpAdreslocatieid), int.Parse(tmpPostcode), tmpHuisnummer, tmpBusnummer, tmpAppNummer, tmpHuisnummerlabel, tmpStraatnaam);
+                        listAdressen.Add(GeselecteerdeAdres);                
+                    }                 
+                    dataReader.Close();
+                    conn.Close();
+                    return listAdressen;
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return null;
+                } finally
+                {
+                    conn?.Dispose();
+                }
+            }
         }
 
         public List<Adres> SelecteerAdressenInStraat(int straatID)

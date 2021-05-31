@@ -46,6 +46,11 @@ namespace AdresBeheerConsoleApp
             Console.WriteLine();
             var gekregenAdres = domainsql.SelecteerAdres(1000333174);
             Console.WriteLine($"{gekregenAdres.StraatID.ToString()} {gekregenAdres.HuisNummer.ToString()} {gekregenAdres.Straat}");
+            var gekregenAdressen = domainsql.SelecteerAdressenInGemeente(11001);
+            foreach (var adres in gekregenAdressen)
+            {
+                Console.WriteLine($"{adres.StraatID.ToString()} {adres.HuisNummer.ToString()} {adres.Straat}");
+            }
             
         }
     }
