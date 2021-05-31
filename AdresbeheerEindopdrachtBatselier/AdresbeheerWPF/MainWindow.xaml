@@ -5,8 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdresbeheerWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="900">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="193*"/>
+            <ColumnDefinition Width="707*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="White" Offset="1"/>
+                <GradientStop Color="#FF2C7AB0" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button x:Name="btnShutdown" Content="Shutdown" HorizontalAlignment="Left" Height="84" Margin="43,317,0,0" VerticalAlignment="Top" Width="100" Background="White" Click="Shutdown_Click" FontFamily="Calisto MT">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Stroke="Black"  
+                       StrokeThickness="0">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush>
+                                    <GradientStop Offset="0"  
+                                        Color="#FFF53535" />
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter HorizontalAlignment="Center"  
+                                VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label Content="Adresbeheer Systeem" HorizontalAlignment="Left" Margin="28,30,0,0" VerticalAlignment="Top" FontFamily="Calisto MT" FontSize="20" Grid.ColumnSpan="2"/>
+        <Border CornerRadius="8" BorderBrush="Black" BorderThickness="4,4,4,4" Margin="402,105,79,400" Grid.Column="1" >
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0,0" StartPoint="1.75,1">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Content="Gemeente" x:Name="btnGemeente" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="Gemeente_Click"/>
+        </Border>
+        <Border CornerRadius="8" BorderBrush="Black" BorderThickness="4,4,4,4" Margin="402,213,79,292" Grid.Column="1" >
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0,0" StartPoint="1.75,1">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Content="Straat" x:Name="btnStraat" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="Straat_Click"/>
+        </Border>
+        <Border CornerRadius="8" BorderBrush="Black" BorderThickness="4,4,4,4" Margin="402,322,79,183" Grid.Column="1" >
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0,0" StartPoint="1.75,1">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Content="Adres" x:Name="btnAdres" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="Adres_Click"/>
+        </Border>
     </Grid>
 </Window>

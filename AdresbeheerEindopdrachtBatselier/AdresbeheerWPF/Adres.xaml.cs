@@ -15,13 +15,20 @@ using System.Windows.Shapes;
 namespace AdresbeheerWPF
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Adres.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Adres : Window
     {
-        public Login()
+        public Adres()
         {
             InitializeComponent();
+        }
+
+        private void Terug_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new();
+            mw.Show();
+            this.Close();
         }
     }
 }

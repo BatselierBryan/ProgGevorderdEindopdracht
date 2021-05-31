@@ -23,6 +23,33 @@ namespace AdresbeheerWPF
         public MainWindow()
         {
             InitializeComponent();
+            ResizeMode = ResizeMode.NoResize;
+        }
+
+        private void Shutdown_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Gemeente_Click(object sender, RoutedEventArgs e)
+        {
+            Gemeente g = new();
+            g.Show();
+            this.Close();
+        }    
+
+        private void Straat_Click(object sender, RoutedEventArgs e)
+        {
+            Straat s = new();
+            s.Show();
+            this.Close();
+        }
+
+        private void Adres_Click(object sender, RoutedEventArgs e)
+        {
+            Adres a = new();
+            a.Show();
+            this.Close();
         }
     }
 }
