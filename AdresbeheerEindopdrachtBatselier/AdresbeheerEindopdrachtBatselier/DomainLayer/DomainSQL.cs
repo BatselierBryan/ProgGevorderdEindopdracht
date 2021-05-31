@@ -465,32 +465,138 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
 
         public void VerwijderAdres(int id)
         {
-            throw new NotImplementedException();
+            var conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                string sql = $"DELETE FROM adres WHERE id = " + id;
+                var updateCommand = new SqlCommand(sql, conn);
+                updateCommand.ExecuteNonQuery();
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            } finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
         }
 
         public void VerwijderGemeente(int NIScode)
         {
-            throw new NotImplementedException();
+            var conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                string sql = $"DELETE FROM gemeente WHERE NISCODE = " + NIScode;
+                var updateCommand = new SqlCommand(sql, conn);
+                updateCommand.ExecuteNonQuery();
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            } finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
         }
 
         public void VerwijderStraat(int id)
         {
-            throw new NotImplementedException();
+            var conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                string sql = $"DELETE FROM straat WHERE id = " + id;
+                var updateCommand = new SqlCommand(sql, conn);
+                updateCommand.ExecuteNonQuery();
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            } finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
         }
 
         public void VoegAdresToe(Adres adres)
         {
-            throw new NotImplementedException();
+            string query = "INSERT INTO adres VALUES (@GegevenId, @GegevenStraatid, @GegevenHuisnummer, @GegevenAppnummer, @GegevenBusnummer, @GegevenHuisnummerlabel, @GegevenAdreslocatieid, @GegevenPostcode)";
+            SqlConnection con = new SqlConnection(connectionString);
+            using (SqlCommand cmd = con.CreateCommand())
+            {
+                con.Open();
+                try
+                {
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@GegevenId", adres.ID);
+                    cmd.Parameters.AddWithValue("@GegevenStraatid", adres.StraatID);
+                    cmd.Parameters.AddWithValue("@GegevenHuisnummer", adres.HuisNummer);
+                    cmd.Parameters.AddWithValue("@GegevenAppnummer", adres.AppNummer);
+                    cmd.Parameters.AddWithValue("@GegevenBusnummer", adres.BusNummer);
+                    cmd.Parameters.AddWithValue("@GegevenHuisnummerlabel", adres.HuisNummerLabel);
+                    cmd.Parameters.AddWithValue("@GegevenAdreslocatieid", adres.AdresLocatieID);
+                    cmd.Parameters.AddWithValue("@GegevenPostcode", adres.Postcode);
+                    cmd.ExecuteNonQuery();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Not saved...");
+                } finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         public void VoegGemeenteToe(Gemeente gemeente)
         {
-            throw new NotImplementedException();
+            string query = "INSERT INTO gemeente VALUES (@GegevenNIScode, @GegevenGemeentenaam)";
+            SqlConnection con = new SqlConnection(connectionString);
+            using (SqlCommand cmd = con.CreateCommand())
+            {
+                con.Open();
+                try
+                {
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@GegevenNIScode", gemeente.NISCode);
+                    cmd.Parameters.AddWithValue("@GegevenGemeentenaam", gemeente.Naam);
+                    cmd.ExecuteNonQuery();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Not saved...");
+                } finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         public void VoegStraatToe(Straat straat)
         {
-            throw new NotImplementedException();
+            string query = "INSERT INTO straat VALUES (@id,@straatnaam,@niscode)";
+            SqlConnection con = new SqlConnection(connectionString);
+            using (SqlCommand cmd = con.CreateCommand())
+            {
+                con.Open();
+                try
+                {
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@id", straat.ID);
+                    cmd.Parameters.AddWithValue("@straatnaam", straat.Naam);
+                    cmd.Parameters.AddWithValue("@niscode", straat.NISCode);
+                    cmd.ExecuteNonQuery();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Not saved...");
+                } finally
+                {
+                    con.Close();
+                }
+            }
         }
     }
 }
