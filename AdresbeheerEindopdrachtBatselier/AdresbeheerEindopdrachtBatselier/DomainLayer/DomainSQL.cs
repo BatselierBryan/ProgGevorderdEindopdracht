@@ -9,24 +9,131 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
 {
     public class DomainSQL : IAdresBeheerder
     {
+        public string connectionString = @"Data Source=LAPTOP-DGE32LN4\SQLEXPRESS;Initial Catalog=Adressen;Integrated Security=True;Pooling=False";
+
         public bool BestaatAdres(Adres adres)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT * FROM adres WHERE id = @GegevenId;");
+                command.Parameters.AddWithValue("@GegevenId", adres.ID);
+                command.Connection = conn;
+                try
+                {                   
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        return true;
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                } finally
+                {
+                    conn?.Dispose();
+                }
+                return false;
+            }
         }
 
         public bool BestaatGemeente(Gemeente gemeente)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT * FROM gemeente WHERE NISCODE = @GegevenNIScode;");
+                command.Parameters.AddWithValue("@GegevenNIScode", gemeente.NISCode);
+                command.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        return true;
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                } finally
+                {
+                    conn?.Dispose();
+                }
+                return false;
+            }
         }
 
         public bool BestaatStraatnaam(string straatnaam, Gemeente gemeente)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT * FROM straat WHERE straatnaam = @GegevenStraat AND NISCODE = @GegevenNIScode;");
+                command.Parameters.AddWithValue("@GegevenStraat", straatnaam);
+                command.Parameters.AddWithValue("@GegevenNIScode", gemeente.NISCode);
+                command.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        return true;
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                } finally
+                {
+                    conn?.Dispose();
+                }
+                return false;
+            }
         }
 
         public Adres SelecteerAdres(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT * FROM adres WHERE id = @GegevenId;");
+                command.Parameters.AddWithValue("@GegevenId", id);
+                command.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        var tmpId = dataReader["id"].ToString();
+                        var tmpStraatId = dataReader["straatid"].ToString();
+                        var tmpHuisnummer = dataReader["huisnummer"].ToString();
+                        var tmpBusnummer = dataReader["busnummer"].ToString();
+                        var tmpAppNummer = dataReader["appartementnummer"].ToString();
+                        var tmpHuisnummerlabel = dataReader["huisnummerlabel"].ToString();
+                        var tmpPostcode = dataReader["postcode"].ToString();
+                        var tmpAdreslocatieid = dataReader["adreslocatieid"].ToString();
+                        var tmpStraatnaam = "Template" ; //Deze moet nog gefixt worden naar -> SelecteerStraat(id)
+
+                        var GeselecteerdeAdres = new Adres(int.Parse(tmpId), int.Parse(tmpStraatId), int.Parse(tmpAdreslocatieid), int.Parse(tmpPostcode), tmpHuisnummer, tmpBusnummer, tmpAppNummer, tmpHuisnummerlabel, tmpStraatnaam);
+                        return GeselecteerdeAdres;
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return null;
+                } finally
+                {
+                    conn?.Dispose();
+                }
+                return null;
+            }
         }
 
         public List<Adres> SelecteerAdressenInGemeente(int NIScode)
