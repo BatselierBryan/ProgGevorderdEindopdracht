@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
                 command.Parameters.AddWithValue("@GegevenId", adres.ID);
                 command.Connection = conn;
                 try
-                {                   
+                {
                     conn.Open();
                     SqlDataReader dataReader = command.ExecuteReader();
                     while (dataReader.Read())
@@ -117,7 +118,7 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
                         var tmpHuisnummerlabel = dataReader["huisnummerlabel"].ToString();
                         var tmpPostcode = dataReader["postcode"].ToString();
                         var tmpAdreslocatieid = dataReader["adreslocatieid"].ToString();
-                        var tmpStraatnaam = "Template" ; //Deze moet nog gefixt worden naar -> SelecteerStraat(id)
+                        var tmpStraatnaam = this.SelecteerStraat(id).Naam;
 
                         var GeselecteerdeAdres = new Adres(int.Parse(tmpId), int.Parse(tmpStraatId), int.Parse(tmpAdreslocatieid), int.Parse(tmpPostcode), tmpHuisnummer, tmpBusnummer, tmpAppNummer, tmpHuisnummerlabel, tmpStraatnaam);
                         return GeselecteerdeAdres;
@@ -149,7 +150,7 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
                     SqlDataReader dataReader = command.ExecuteReader();
                     var listAdressen = new List<Adres>();
                     while (dataReader.Read())
-                    {            
+                    {
                         var tmpId = dataReader["id"].ToString();
                         var tmpStraatId = dataReader["straatid"].ToString();
                         var tmpHuisnummer = dataReader["huisnummer"].ToString();
@@ -158,11 +159,11 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
                         var tmpHuisnummerlabel = dataReader["huisnummerlabel"].ToString();
                         var tmpPostcode = dataReader["postcode"].ToString();
                         var tmpAdreslocatieid = dataReader["adreslocatieid"].ToString();
-                        var tmpStraatnaam = "Template"; //Deze moet nog gefixt worden naar -> SelecteerStraat(id)
-                        
+                        var tmpStraatnaam = this.SelecteerStraat(int.Parse(tmpId)).Naam;
+
                         var GeselecteerdeAdres = new Adres(int.Parse(tmpId), int.Parse(tmpStraatId), int.Parse(tmpAdreslocatieid), int.Parse(tmpPostcode), tmpHuisnummer, tmpBusnummer, tmpAppNummer, tmpHuisnummerlabel, tmpStraatnaam);
-                        listAdressen.Add(GeselecteerdeAdres);                
-                    }                 
+                        listAdressen.Add(GeselecteerdeAdres);
+                    }
                     dataReader.Close();
                     conn.Close();
                     return listAdressen;
@@ -181,7 +182,7 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlCommand command = new("SELECT a.id, a.straatID, a.huisnummer, a.appartementnummer, a.busnummer, a.huisnummerlabel, a.adreslocatieID, a.postcode, stra.NISCODE FROM adres a LEFT JOIN straat stra ON a.straatID = stra.id WHERE stra.id= @GegevenStraatId;");
+                SqlCommand command = new("SELECT a.id, a.straatID, a.huisnummer, a.appartementnummer, a.busnummer, a.huisnummerlabel, a.adreslocatieID, a.postcode, stra.NISCODE FROM adres a LEFT JOIN straat stra ON a.straatID = stra.id WHERE stra.id = @GegevenStraatId;");
                 command.Parameters.AddWithValue("@GegevenStraatId", straatID);
                 command.Connection = conn;
                 try
@@ -199,7 +200,7 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
                         var tmpHuisnummerlabel = dataReader["huisnummerlabel"].ToString();
                         var tmpPostcode = dataReader["postcode"].ToString();
                         var tmpAdreslocatieid = dataReader["adreslocatieid"].ToString();
-                        var tmpStraatnaam = "Template"; //Deze moet nog gefixt worden naar -> SelecteerStraat(id)
+                        var tmpStraatnaam = this.SelecteerStraat(int.Parse(tmpId)).Naam;
 
                         var GeselecteerdeAdres = new Adres(int.Parse(tmpId), int.Parse(tmpStraatId), int.Parse(tmpAdreslocatieid), int.Parse(tmpPostcode), tmpHuisnummer, tmpBusnummer, tmpAppNummer, tmpHuisnummerlabel, tmpStraatnaam);
                         listAdressen.Add(GeselecteerdeAdres);
@@ -238,14 +239,14 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
                         return GeselecteerdeGemeente;
                     }
                     dataReader.Close();
-                    conn.Close();                  
+                    conn.Close();
                 } catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                     return null;
                 } finally
                 {
-                    conn?.Dispose();                   
+                    conn?.Dispose();
                 }
                 return null;
             }
@@ -286,32 +287,180 @@ namespace AdresbeheerEindopdrachtBatselier.DomainLayer
 
         public Straat SelecteerStraat(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT * FROM straat WHERE id = @GegevenId;");
+                command.Parameters.AddWithValue("@GegevenId", id);
+                command.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        var tmpId = dataReader["id"].ToString();
+                        var tmpStraatnaam = dataReader["straatnaam"].ToString();
+                        var tmpNiscode = dataReader["NISCODE"].ToString();
+
+                        var GeselecteerdeStraat = new Straat(int.Parse(tmpId), int.Parse(tmpNiscode), tmpStraatnaam);
+                        return GeselecteerdeStraat;
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return null;
+                } finally
+                {
+                    conn?.Dispose();
+                }
+                return null;
+            }
         }
 
         public List<Straat> SelecteerStratenInGemeente(int NIScode)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT s.id, s.straatnaam, s.NISCODE FROM gemeente as g INNER JOIN straat AS s ON s.NISCODE = g.NISCODE WHERE s.NISCODE = @GegevenNIScode AND s.NISCODE = g.NISCODE;");
+                command.Parameters.AddWithValue("@GegevenNIScode", NIScode);
+                command.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    var listStraten = new List<Straat>();
+                    while (dataReader.Read())
+                    {
+                        var tmpId = dataReader["id"].ToString();
+                        var tmpNiscode = dataReader["NISCODE"].ToString();
+                        var tmpStraatnaam = dataReader["straatnaam"].ToString();
+
+                        var GeselecteerdeStraat = new Straat(int.Parse(tmpId), int.Parse(tmpNiscode), tmpStraatnaam);
+                        listStraten.Add(GeselecteerdeStraat);
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                    return listStraten;
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return null;
+                } finally
+                {
+                    conn?.Dispose();
+                }
+            }
         }
 
         public List<Straat> SelecteerStratenInGemeente(string Gemeente)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new("SELECT s.id, s.straatnaam, s.NISCODE FROM gemeente as g INNER JOIN straat AS s ON s.NISCODE = g.NISCODE WHERE g.gemeentenaam = @GegevenGemeente AND g.NISCODE = s.NISCODE;");
+                command.Parameters.AddWithValue("@GegevenGemeente", Gemeente);
+                command.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    var listStraten = new List<Straat>();
+                    while (dataReader.Read())
+                    {
+                        var tmpId = dataReader["id"].ToString();
+                        var tmpNiscode = dataReader["NISCODE"].ToString();
+                        var tmpStraatnaam = dataReader["straatnaam"].ToString();
+
+                        var GeselecteerdeStraat = new Straat(int.Parse(tmpId), int.Parse(tmpNiscode), tmpStraatnaam);
+                        listStraten.Add(GeselecteerdeStraat);
+                    }
+                    dataReader.Close();
+                    conn.Close();
+                    return listStraten;
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return null;
+                } finally
+                {
+                    conn?.Dispose();
+                }
+            }
         }
 
         public void UpdateAdres(Adres adres)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection(connectionString);
+            string query = "UPDATE [dbo].[adres] SET [straatid] = @GegevenStraatid, [huisnummer] = @GegevenHuisnummer, [appartementnummer] = @GegevenAppartementnummer, [busnummer] = @GegevenBusnummer, [huisnummerlabel] = @GegevenHuisnummerlabel, [postcode] = @GegevenPostcode WHERE id = @GegevenId;";
+            using (SqlCommand command = conn.CreateCommand())
+            {
+                conn.Open();
+                try
+                {
+                    command.Parameters.AddWithValue("@GegevenId", adres.ID);
+                    command.Parameters.AddWithValue("@GegevenStraatid", adres.StraatID);
+                    command.Parameters.AddWithValue("@GegevenHuisnummer", adres.HuisNummer);
+                    command.Parameters.AddWithValue("@GegevenAppartementnummer", adres.AppNummer);
+                    command.Parameters.AddWithValue("@GegevenBusnummer", adres.BusNummer);
+                    command.Parameters.AddWithValue("@GegevenHuisnummerlabel", adres.HuisNummerLabel);
+                    command.Parameters.AddWithValue("@GegevenPostcode", adres.Postcode);
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                } catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                } finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public void UpdateGemeente(Gemeente gemeente)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection(connectionString);
+            string query = "UPDATE [dbo].[gemeente] SET [gemeentenaam] = @GegevenGemeentenaam WHERE NISCODE = @GegevenNIScode;";
+            using (SqlCommand command = conn.CreateCommand())
+            {
+                conn.Open();
+                try
+                {
+                    command.Parameters.AddWithValue("@GegevenNIScode", gemeente.NISCode);
+                    command.Parameters.AddWithValue("@GegevenGemeentenaam", gemeente.Naam);
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                } catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                } finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public void UpdateStraat(Straat straat)
         {
-            throw new NotImplementedException();
+            SqlConnection conn = new SqlConnection(connectionString);
+            string query = "UPDATE [dbo].[straat] SET [straatnaam] = @GegevenStraatnaam WHERE id = @GegevenId;";
+            using (SqlCommand command = conn.CreateCommand())
+            {
+                conn.Open();
+                try
+                {
+                    command.Parameters.AddWithValue("@GegevenId", straat.ID);
+                    command.Parameters.AddWithValue("@GegevenStraatnaam", straat.Naam);
+                    command.CommandText = query;
+                    command.ExecuteNonQuery();
+                } catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                } finally
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public void VerwijderAdres(int id)

@@ -101,7 +101,7 @@ namespace AdresbeheerWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/AdresbeheerWPF;component/gemeente.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/AdresbeheerWPF;V1.0.0.0;component/gemeente.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Gemeente.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

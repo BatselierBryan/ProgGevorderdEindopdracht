@@ -39,36 +39,37 @@ namespace AdresBeheerConsoleApp
 
             var domainsql = new DomainSQL();
 
-            Console.WriteLine(domainsql.BestaatAdres(tmpAdres));
-            Console.WriteLine(domainsql.BestaatGemeente(tmpGemeente));
-            Console.WriteLine(domainsql.BestaatStraatnaam(tmpStraat.Naam, tmpGemeente));
+            //Console.WriteLine();
+            //var gekregenGemeente = domainsql.SelecteerGemeente(11001);
+            //Console.WriteLine($"{gekregenGemeente.Naam} {gekregenGemeente.NISCode}");
 
             Console.WriteLine();
-            var gekregenAdres = domainsql.SelecteerAdres(1000333174);
-            Console.WriteLine($"{gekregenAdres.StraatID.ToString()} {gekregenAdres.HuisNummer.ToString()} {gekregenAdres.Straat}");
-            var gekregenAdressen = domainsql.SelecteerAdressenInGemeente(11001);
-            foreach (var adres in gekregenAdressen)
-            {
-                Console.WriteLine($"{adres.StraatID.ToString()} {adres.HuisNummer.ToString()} {adres.Straat}");
-            }
+            var gekregenAdres = domainsql.SelecteerAdres(1000320925);
+            Console.WriteLine($"{gekregenAdres.ID} {gekregenAdres.StraatID} {gekregenAdres.AdresLocatieID} {gekregenAdres.Postcode} {gekregenAdres.HuisNummer} {gekregenAdres.BusNummer} {gekregenAdres.AppNummer} {gekregenAdres.HuisNummerLabel} {gekregenAdres.Straat}");
+
 
             Console.WriteLine();
-            gekregenAdressen = domainsql.SelecteerAdressenInStraat(29299);
-            foreach (var adres in gekregenAdressen)
-            {
-                Console.WriteLine($"{adres.StraatID.ToString()} {adres.HuisNummer.ToString()} {adres.Straat}");
-            }
+            var verander = new Adres(1000320925, 29299, 2694567, 1800, "5", "", "4", "2 - 4", "GemeenteStraat");
+            domainsql.UpdateAdres(verander);
+
 
             Console.WriteLine();
-            var gekregenGemeente = domainsql.SelecteerGemeente(11001);
-            Console.WriteLine(gekregenGemeente.Naam + " " +  gekregenGemeente.NISCode);
+            var gekregenAdres2 = domainsql.SelecteerAdres(1000320925);
+            Console.WriteLine($"{gekregenAdres2.ID} {gekregenAdres2.StraatID} {gekregenAdres2.AdresLocatieID} {gekregenAdres2.Postcode} {gekregenAdres2.HuisNummer} {gekregenAdres2.BusNummer} {gekregenAdres2.AppNummer} {gekregenAdres2.HuisNummerLabel} {gekregenAdres2.Straat}");
 
-            Console.WriteLine();
-            var gekregenGemeenten = domainsql.SelecteerGemeenten();
-            foreach (var gemeente in gekregenGemeenten)
-            {
-                Console.WriteLine($"{gemeente.Naam} {gemeente.NISCode.ToString()}");
-            }
+            //Console.WriteLine();
+            //var gekregenStraten = domainsql.SelecteerStratenInGemeente(11001);
+            //foreach (var straat in gekregenStraten)
+            //{
+            //    Console.WriteLine($"{straat.ID} {straat.Naam} {straat.NISCode}");
+            //}
+
+            //Console.WriteLine();
+            //var gekregenStraten2 = domainsql.SelecteerStratenInGemeente("Aartselaar");
+            //foreach (var straat in gekregenStraten2)
+            //{
+            //    Console.WriteLine($"{straat.ID} {straat.Naam} {straat.NISCode}");
+            //}
         }
     }
 }
