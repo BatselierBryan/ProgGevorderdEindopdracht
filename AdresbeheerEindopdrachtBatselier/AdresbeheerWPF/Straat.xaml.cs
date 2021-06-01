@@ -25,6 +25,7 @@ namespace AdresbeheerWPF
         public Straat()
         {
             InitializeComponent();
+            ResizeMode = ResizeMode.NoResize;
         }
 
         private void Terug_Click(object sender, RoutedEventArgs e)
