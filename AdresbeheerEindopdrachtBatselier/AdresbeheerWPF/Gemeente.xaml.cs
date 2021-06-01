@@ -115,8 +115,14 @@ namespace AdresbeheerWPF
                 gewildeGemeente = new AdresbeheerEindopdrachtBatselier.Gemeente(txtGemeente.Text, int.Parse(txtNiscode.Text));
             }
 
-            domainsql.VerwijderGemeente(gewildeGemeente.NISCode);
-            vulCombobox();
+            if (!domainsql.BestaatGemeente(gewildeGemeente))
+            {
+                MessageBox.Show("Deze gemeente bestaat niet.", "Gemeente bestaat niet", MessageBoxButton.OK, MessageBoxImage.Information);
+            } else
+            {
+                domainsql.VerwijderGemeente(gewildeGemeente.NISCode);
+                vulCombobox();
+            }               
         }
 
         private void btnGemeenteUpdaten_Click(object sender, RoutedEventArgs e)
