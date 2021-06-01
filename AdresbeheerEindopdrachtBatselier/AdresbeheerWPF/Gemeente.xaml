@@ -72,6 +72,6 @@
             </Border.Background>
             <Button Content="Update gemeente" x:Name="btnGemeenteUpdaten" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="6,6,6,6" FontFamily="Calisto MT" FontSize="20" Click="btnGemeenteUpdaten_Click"/>
         </Border>
-        <ComboBox x:Name="cboGemeentes" HorizontalAlignment="Left" Height="26" Margin="51,290,0,0" VerticalAlignment="Top" Width="384" IsReadOnly="True"/>
+        <ComboBox x:Name="cboGemeentes" HorizontalAlignment="Left" Height="26" Margin="51,290,0,0" VerticalAlignment="Top" Width="384" IsReadOnly="True" SelectionChanged="cboGemeente_SelectionChanged"/>
     </Grid>
 </Window>

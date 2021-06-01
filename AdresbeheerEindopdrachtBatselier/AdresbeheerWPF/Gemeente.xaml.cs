@@ -21,6 +21,7 @@ namespace AdresbeheerWPF
     public partial class Gemeente : Window
     {
         public DomainSQL domainsql = new();
+        public List<AdresbeheerEindopdrachtBatselier.Gemeente> listGemeente = new();
 
         public Gemeente()
         {
@@ -31,6 +32,7 @@ namespace AdresbeheerWPF
         void vulCombobox()
         {
             cboGemeentes.Items.Clear();
+            listGemeente.Clear();
 
             var gemeenten = domainsql.SelecteerGemeenten();
 
@@ -38,6 +40,7 @@ namespace AdresbeheerWPF
             {
                 cboGemeentes.Items.Add($"{gemeente.Naam} ({gemeente.NISCode})");
             }
+            listGemeente = gemeenten;
             txtGemeente.Text = null;
             txtNiscode.Text = null;
         }
@@ -76,7 +79,7 @@ namespace AdresbeheerWPF
                 domainsql.VoegGemeenteToe(gewildeGemeente);
 
                 vulCombobox();
-            }          
+            }
         }
 
         private void btnGemeenteCheckAanwezigheid_Click(object sender, RoutedEventArgs e)
@@ -89,14 +92,14 @@ namespace AdresbeheerWPF
             } else
             {
                 gewildeGemeente = new AdresbeheerEindopdrachtBatselier.Gemeente(txtGemeente.Text, int.Parse(txtNiscode.Text));
-            }                  
+            }
 
             if (domainsql.BestaatGemeente(gewildeGemeente))
             {
                 MessageBox.Show("Deze gemeente is aanwezig!", "Gemeente aanwezigheid", MessageBoxButton.OK, MessageBoxImage.Information);
             } else
             {
-                MessageBox.Show("Deze gemeente is niet aanwezig!", "Gemeente aanwezigheid", MessageBoxButton.OK ,MessageBoxImage.Information);
+                MessageBox.Show("Deze gemeente is niet aanwezig!", "Gemeente aanwezigheid", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -130,6 +133,17 @@ namespace AdresbeheerWPF
 
             domainsql.UpdateGemeente(gewildeGemeente);
             vulCombobox();
+        }
+
+        private void cboGemeente_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                txtGemeente.Text = listGemeente.ElementAt(cboGemeentes.SelectedIndex).Naam;
+                txtNiscode.Text = listGemeente.ElementAt(cboGemeentes.SelectedIndex).NISCode.ToString();
+            } catch (Exception)
+            {
+            }
         }
     }
 }
